@@ -46,5 +46,37 @@ class StringRelatedProblemsTest {
     String secondExpectedOutput = "bb";
     String secondActualOutput = problems.longestPalindrome(secondInput);
     assertEquals(secondExpectedOutput, secondActualOutput);
+
+    String thirdInput = "racecar";
+    String thirdExpectedOutput = "racecar";
+    String thirdActualOutput = problems.longestPalindrome(thirdInput);
+    assertEquals(thirdExpectedOutput, thirdActualOutput);
+  }
+
+  // Helpers tests
+  @Test
+  void insertSeparators() {
+    String firstString = "string";
+    String firstExpectedString = "|s|t|r|i|n|g|";
+    assertEquals(firstExpectedString, StringRelatedProblems.insertSeparators(firstString));
+
+    String secondString = "a";
+    String secondExpectedString = "|a|";
+    assertEquals(secondExpectedString, StringRelatedProblems.insertSeparators(secondString));
+  }
+
+  @Test
+  void getIndexOfLargest() {
+    int[] firstArray = {1, 3, 2};
+    int firstExpectedIndex = 1;
+    assertEquals(firstExpectedIndex, StringRelatedProblems.getIndexOfLargest(firstArray));
+
+    int[] secondArray = {1, 1, 4, 1, 1};
+    int secondExpectedIndex = 2;
+    assertEquals(secondExpectedIndex, StringRelatedProblems.getIndexOfLargest(secondArray));
+
+    int[] thirdArray = {};
+    int thirdExpectedIndex = -1;
+    assertEquals(thirdExpectedIndex, StringRelatedProblems.getIndexOfLargest(thirdArray));
   }
 }

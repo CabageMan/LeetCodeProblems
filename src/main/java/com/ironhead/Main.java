@@ -1,5 +1,7 @@
 package com.ironhead;
 
+import com.ironhead.problems.StringRelatedProblems;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -64,6 +66,9 @@ public class Main {
     }
 
     System.out.println("MaxValue: " + maxLength);
+
+    StringRelatedProblems stringProblems = new StringRelatedProblems();
+    System.out.println("Result: " + stringProblems.longestPalindrome("racecar"));
   }
 
   private static String test(int[] s1, int[] s2) {
