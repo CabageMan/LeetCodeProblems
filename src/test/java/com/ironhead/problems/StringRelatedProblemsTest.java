@@ -51,6 +51,11 @@ class StringRelatedProblemsTest {
     String thirdExpectedOutput = "racecar";
     String thirdActualOutput = problems.longestPalindrome(thirdInput);
     assertEquals(thirdExpectedOutput, thirdActualOutput);
+
+    String fourthInput = "abb";
+    String fourthExpectedOutput = "bb";
+    String fourthActualOutput = problems.longestPalindrome(fourthInput);
+    assertEquals(fourthExpectedOutput, fourthActualOutput);
   }
 
   // Helpers tests

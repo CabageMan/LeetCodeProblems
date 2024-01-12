@@ -30,6 +30,16 @@ public class StringRelatedProblems {
   reads the same forward and backward.) substring in s.
   */
   public String longestPalindrome(String s) {
+    if (s.length() % 2 != 0) {
+      return getLongestPalindrome(s);
+    } else {
+      return getLongestPalindrome(insertSeparators(s)).replace("|", "");
+    }
+  }
+
+// Manacher's algorithm
+// Need to fix solution for even numbers.
+  private static String getLongestPalindrome(String s) {
     int stringLength = s.length();
     int[] radii = new int[stringLength];
     int leftBound = 0;
