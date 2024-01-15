@@ -4,6 +4,8 @@ import com.ironhead.helpers.ListNode;
 
 public class ArithmeticRelatedProblems {
   /*
+  Two Sum
+  -------------------------------------------------------------------------------
   Given an array of integers nums and an integer target,
   return indices of the two numbers such that they add up to target.
   You may assume that each input would have exactly one solution,
@@ -37,6 +39,7 @@ public class ArithmeticRelatedProblems {
   }
 
   /*
+  Add Two Numbers
   -------------------------------------------------------------------------------
   You are given two non-empty linked lists representing two non-negative integers.
   The digits are stored in reverse order, and each of their nodes contains a single digit.
@@ -76,6 +79,7 @@ public class ArithmeticRelatedProblems {
 
 
   /*
+  Median of Two Sorted Arrays
   -------------------------------------------------------------------------------
   Given two sorted arrays nums1 and nums2 of size m and n respectively,
   return the median of the two sorted arrays.

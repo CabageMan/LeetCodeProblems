@@ -56,6 +56,46 @@ class StringRelatedProblemsTest {
     String fourthExpectedOutput = "bb";
     String fourthActualOutput = problems.longestPalindrome(fourthInput);
     assertEquals(fourthExpectedOutput, fourthActualOutput);
+
+    String fifthInput = "aaaa";
+    String fifthExpectedOutput = "aaaa";
+    String fifthActualOutput = problems.longestPalindrome(fifthInput);
+    assertEquals(fifthExpectedOutput, fifthActualOutput);
+  }
+
+  @Test
+  void zigzagConvert() {
+    /*
+
+    Example 3:
+
+    Input: s = "A", numRows = 1
+    Output: "A"
+     */
+    String firstCaseInput = "PAYPALISHIRING";
+    int firstCaseNumRows = 3;
+    String firstCaseExpectedOutput = "PAHNAPLSIIGYIR";
+    String firstCaseActualOutput = problems.zigzagConvert(firstCaseInput, firstCaseNumRows);
+    assertEquals(firstCaseExpectedOutput, firstCaseActualOutput);
+
+    /*
+    Explanation:
+    P     I    N
+    A   L S  I G
+    Y A   H R
+    P     I
+    */
+    String secondCaseInput = "PAYPALISHIRING";
+    int secondCaseNumRows = 4;
+    String secondCaseExpectedOutput = "PINALSIGYAHRPI";
+    String secondCaseActualOutput = problems.zigzagConvert(secondCaseInput, secondCaseNumRows);
+    assertEquals(secondCaseExpectedOutput, secondCaseActualOutput);
+
+    String thirdCaseInput = "A";
+    int thirdCaseNumRows = 1;
+    String thirdCaseExpectedOutput = "A";
+    String thirdCaseActualOutput = problems.zigzagConvert(thirdCaseInput, thirdCaseNumRows);
+    assertEquals(thirdCaseExpectedOutput, thirdCaseActualOutput);
   }
 
   // Helpers tests

@@ -4,6 +4,8 @@ import java.util.*;
 
 public class StringRelatedProblems {
   /*
+  Longest Substring Without Repeating Characters
+  -------------------------------------------------------------------------------
   Given a string s, find the length of the longest substring
   without repeating characters.
    */
@@ -25,59 +27,79 @@ public class StringRelatedProblems {
   }
 
   /*
+  Longest Palindromic Substring
   -------------------------------------------------------------------------------
   Given a string s, return the longest palindromic (A string is palindromic if it
   reads the same forward and backward.) substring in s.
   */
+  // Manacher's algorithm
   public String longestPalindrome(String s) {
-    if (s.length() % 2 != 0) {
-      return getLongestPalindrome(s);
-    } else {
-      return getLongestPalindrome(insertSeparators(s)).replace("|", "");
-    }
-  }
-
-// Manacher's algorithm
-// Need to fix solution for even numbers.
-  private static String getLongestPalindrome(String s) {
     int stringLength = s.length();
-    int[] radii = new int[stringLength];
+
+    int[] oddRadii = new int[stringLength];
+    int[] evenRadii = new int[stringLength];
+
     int leftBound = 0;
     int rightBound = -1;
-
-    if (s.length() % 2 != 0) {
-      for (int i = 0; i < stringLength; i++) {
-        int radius = i > rightBound ? 1 : Math.min(radii[leftBound + rightBound - i], rightBound - i + 1);
-        while ((i + radius) < stringLength && (i - radius) >= 0 && s.charAt(i + radius) == s.charAt(i - radius)) {
-          radius++;
-        }
-        radii[i] = radius;
-        if (i + radius - 1 > rightBound) {
-          leftBound = i - radius + 1;
-          rightBound = i + radius - 1;
-        }
+    for (int i = 0; i < stringLength; i++) {
+      int radius = i > rightBound ? 1 : Math.min(oddRadii[leftBound + rightBound - i], rightBound - i + 1);
+      while ((i + radius) < stringLength && (i - radius) >= 0 && s.charAt(i + radius) == s.charAt(i - radius)) {
+        radius++;
       }
-    } else {
-      for (int i = 0; i < stringLength; i++) {
-        int radius = i > rightBound ? 0 : Math.min(radii[leftBound + rightBound + 1], rightBound - i + 1);
-        while ((i + radius) < stringLength && (i - radius - 1) >= 0 && s.charAt(i + radius) == s.charAt(i - radius - 1)) {
-          radius++;
-        }
-        radii[i] = radius;
-        if (i + radius - 1 > radius) {
-          leftBound = i - radius;
-          rightBound = i + radius - 1;
-        }
+      oddRadii[i] = radius;
+      if (i + radius - 1 > rightBound) {
+        leftBound = i - radius + 1;
+        rightBound = i + radius - 1;
       }
     }
 
-    int maxRadiusCenter = StringRelatedProblems.getIndexOfLargest(radii);
-    int maxRadius = maxRadiusCenter != -1 ? radii[maxRadiusCenter] : 0;
-    int startIndex = maxRadiusCenter - maxRadius + 1;
-    int endIndex = maxRadiusCenter + maxRadius;
+    leftBound = 0;
+    rightBound = -1;
+    for (int i = 0; i < stringLength; i++) {
+      int radius = i > rightBound ? 0 : Math.min(evenRadii[leftBound + rightBound - i + 1], rightBound - i + 1);
+      while ((i + radius) < stringLength && (i - radius - 1) >= 0 && s.charAt(i + radius) == s.charAt(i - radius - 1)) {
+        radius++;
+      }
+      evenRadii[i] = radius;
+      if (i + radius - 1 > radius) {
+        leftBound = i - radius;
+        rightBound = i + radius - 1;
+      }
+    }
 
-    return s.substring(startIndex, endIndex);
+    int maxOddRadiusCenter = StringRelatedProblems.getIndexOfLargest(oddRadii);
+    int maxOddRadius = maxOddRadiusCenter != -1 ? oddRadii[maxOddRadiusCenter] : 0;
+
+    int maxEvenRadiusCenter = StringRelatedProblems.getIndexOfLargest(evenRadii);
+    int maxEvenRadius = maxEvenRadiusCenter != -1 ? evenRadii[maxEvenRadiusCenter] : 0;
+
+    if (maxOddRadius > maxEvenRadius) {
+      int startIndex = maxOddRadiusCenter - maxOddRadius + 1;
+      int endIndex = maxOddRadiusCenter + maxOddRadius;
+      return s.substring(startIndex, endIndex);
+    } else {
+      int startIndex = maxEvenRadiusCenter - maxEvenRadius;
+      int endIndex = maxEvenRadiusCenter + maxEvenRadius;
+      return s.substring(startIndex, endIndex);
+    }
   }
+
+  /*
+  Zigzag Conversion
+  -------------------------------------------------------------------------------
+  The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+  (you may want to display this pattern in a fixed font for better legibility)
+  P   A   H   N
+  A P L S I I G
+  Y   I   R
+  And then read line by line: "PAHNAPLSIIGYIR"
+  Write the code that will take a string and make this conversion given a number of rows:
+  string convert(string s, int numRows);
+   */
+  public String zigzagConvert(String s, int numRows) {
+    return "";
+  }
+
 
   // Helpers
   public static String insertSeparators(String s) {
